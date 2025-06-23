@@ -1,0 +1,42 @@
+name: CI Pipeline
+
+on:
+  pull_request:
+    branches: [ "dev" ]
+  workflow_dispatch:
+
+jobs:
+  lint-and-test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        component: [frontend, backend]  # Run on both components
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Use Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Install dependencies
+        working-directory: ${{ matrix.component }}
+        run: npm install
+
+      - name: Lint code
+        working-directory: ${{ matrix.component }}
+        run: npm run lint
+
+      - name: Audit dependencies
+        working-directory: ${{ matrix.component }}
+        run: npm audit --audit-level=high
+
+      - name: Run tests
+        working-directory: ${{ matrix.component }}
+        run: npm test
+
+      - name: Snyk security scan
+        working-directory: ${{ matrix.component }}
+        run: npx snyk test
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
