@@ -15,5 +15,12 @@
     "url": "https://github.com/SamohtNB/test_pipeline/issues"
   },
   "homepage": "https://github.com/SamohtNB/test_pipeline#readme",
-  "description": ""
+  "description": "",
+  "dependencies": {
+    "react": "^19.1.0"
+  },
+  "devDependencies": {
+    "jest": "^30.0.2",
+    "supertest": "^7.1.1"
+  }
 }
