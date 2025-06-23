@@ -1,0 +1,25 @@
+{
+  "name": "test_pipeline",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm run lint && npm run jest",
+    "lint": "eslint .",
+    "dev": "docker compose up -d && nodemon frontend/src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SamohtNB/test_pipeline.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SamohtNB/test_pipeline/issues"
+  },
+  "homepage": "https://github.com/SamohtNB/test_pipeline#readme",
+  "description": "",
+  "dependencies": {
+    "nodemon": "^3.1.10"
+  }
+}

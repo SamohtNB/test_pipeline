@@ -10,3 +10,8 @@ services:
       - "3000:3000"
     depends_on:
       - backend
+  tests:
+    build: ./backend
+    command: npm test
+    depends_on:
+      - backend
