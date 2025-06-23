@@ -6,7 +6,7 @@ function App() {
   const [serverResponse, setServerResponse] = useState('');
 
   useEffect(() => {
-    fetch('/api/hello')
+    fetch('http://localhost:3001/api/hello')
       .then(res => res.json())
       .then(data => setMessage(data.message))
       .catch(() => setMessage('Erreur lors de la récupération de l\'API'));
@@ -14,7 +14,7 @@ function App() {
 
   const handleSubmit = async () => {
     try {
-      const response = await fetch('/api/message', {
+      const response = await fetch('http://localhost:3001/api/message', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
