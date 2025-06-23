@@ -3,10 +3,7 @@ const cors = require('cors');
 const app = express();
 const port = 3001;
 
-// Utilisez le middleware CORS
 app.use(cors());
-
-// Middleware pour parser le JSON
 app.use(express.json());
 
 app.get('/api/hello', (req, res) => {
@@ -25,6 +22,12 @@ app.use((err, req, res, next) => {
   res.status(500).json({ error: 'Something went wrong!' });
 });
 
-app.listen(port, () => {
-  console.log(`Backend listening at http://localhost:${port}`);
-});
+// Exportez l'application pour les tests
+module.exports = app;
+
+// Écoutez sur le port uniquement si ce fichier est exécuté directement
+if (require.main === module) {
+  app.listen(port, () => {
+    console.log(`Backend listening at http://localhost:${port}`);
+  });
+}
